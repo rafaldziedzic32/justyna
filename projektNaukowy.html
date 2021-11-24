@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt naukowy</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <style>
+        /* #popular {
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            width: 1000px;
+        } 
+
+        #upcoming {
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            width: 1000px;
+        } */
+    </style>
+</head>
+<body>
+    
+    <!-- <div id="popular">
+        <h1>Lista popularnych filmów</h1>
+    </div>
+    <div id="upcoming">
+        <h1>Lista nadchodzących filmów</h1>
+    </div> -->
+
+
+    <div class="container">
+        <h3>Lista Popularnych filmów</h3>
+        <div id = "test" class="row row-cols-6">
+          <!-- <div class="col">Column</div>
+          <div class="col">Column</div>
+          <div class="col">Column</div>
+          <div class="col">Column</div>
+          <div class="col">Column</div>
+          <div class="col">Column</div> -->
+        </div>
+      </div>
+
+    <div class="container">
+        <h3>Lista najlepiej ocenianych</h3>
+        <div id = "test2" class="row row-cols-6">
+          <!-- <div class="col">Column</div>
+          <div class="col">Column</div>
+          <div class="col">Column</div>
+          <div class="col">Column</div>
+          <div class="col">Column</div>
+          <div class="col">Column</div> -->
+        </div>
+      </div>  
+
+
+<script>
+   
+    // async function getPupolarMovieFromExternalApi() {
+    //     const apiUpcomingUrl = "https://api.themoviedb.org/3/movie/popular?api_key=89e9bc9ed192ea9b6c18369d13c01ad5&language=pl-PL&page=1";
+    //     const response = await fetch(apiUpcomingUrl);
+    //     const data = await response.json();
+
+    //     console.log(data);
+    //     console.log(data.results);
+    // }
+
+
+        async function getData() {
+            const apiUpcomingUrl = "https://api.themoviedb.org/3/movie/popular?api_key=89e9bc9ed192ea9b6c18369d13c01ad5&language=pl-PL&page=1";
+            const response = await fetch(apiUpcomingUrl);
+            const data = await response.json();
+
+            console.log(data);
+            console.log(data.results);
+
+            var numer;
+            for (numer = 0; numer < 6; numer++) {
+                    mainPopularDiv = document.getElementById("test");
+
+                    containerDiv = document.createElement('div');
+                    containerDiv.setAttribute("class", "col");   
+
+                    mainPopularDiv.appendChild(containerDiv);
+
+                    divTitle = document.createElement('div');
+                    divImage = document.createElement('div');
+                    divDescription = document.createElement('div');
+
+                    //umieszczamy te divy w środku tego naszego głównego
+                    containerDiv.appendChild(divTitle);
+                    containerDiv.appendChild(divImage);
+                    containerDiv.appendChild(divDescription);
+
+                    //umieszczamy w tych divach jakiś teksty i obrazek
+                    divTitle.innerText = data.results[numer].original_title.substr(0, 15) + "...";
+                    // divTitle.innerText = data.results[numer].original_title;
+                    divImage.innerHTML = '<img src="https://image.tmdb.org/t/p/w92/' + data.results[numer].poster_path + '" width="150px" height="200px">';
+                    // divDescription.innerText = data.results[numer].overview.substr(0, 15) + "...";
+                    divDescription.innerText = data.results[numer].overview.substr(0, 50) + "...";
+                    // divDescription.innerText = data.results[numer].overview;
+                }
+    }
+
+    async function getData2() {
+            const apiUpcomingUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=89e9bc9ed192ea9b6c18369d13c01ad5&language=pl-PL&page=1";
+            const response = await fetch(apiUpcomingUrl);
+            const data = await response.json();
+
+            console.log(data);
+            console.log(data.results);
+
+            var numer;
+            for (numer = 0; numer < 6; numer++) {
+                    mainPopularDiv = document.getElementById("test2");
+
+                    containerDiv = document.createElement('div');
+                    containerDiv.setAttribute("class", "col");   
+
+                    mainPopularDiv.appendChild(containerDiv);
+
+                    divTitle = document.createElement('div');
+                    divImage = document.createElement('div');
+                    divDescription = document.createElement('div');
+
+                    //umieszczamy te divy w środku tego naszego głównego
+                    containerDiv.appendChild(divTitle);
+                    containerDiv.appendChild(divImage);
+                    containerDiv.appendChild(divDescription);
+
+                    //umieszczamy w tych divach jakiś teksty i obrazek
+                    divTitle.innerText = data.results[numer].original_title.substr(0, 15) + "...";
+                    // divTitle.innerText = data.results[numer].original_title;
+                    divImage.innerHTML = '<img src="https://image.tmdb.org/t/p/w92/' + data.results[numer].poster_path + '" width="150px" height="200px">';
+                    // divDescription.innerText = data.results[numer].overview.substr(0, 15) + "...";
+                    divDescription.innerText = data.results[numer].overview.substr(0, 50) + "...";
+                    // divDescription.innerText = data.results[numer].overview;
+                }
+    }
+
+   getData();
+   getData2();
+//    getPupolarMovieFromExternalApi();
+
+
+</script>
+
+<!-- <script src="bootstrap/js/javascript.js"></script> -->
+</body>
+</html>
